@@ -1,0 +1,29 @@
+<!-- ✅ Reusable Header -->
+<app-header [role]="'Doctor Dashboard'"></app-header>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- View Appointments -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success">📅 View Appointments</h5>
+          <p class="card-text">Check your upcoming patient appointments.</p>
+          <a routerLink="/doctor/view-appointments" class="btn btn-primary btn-sm">View Appointments</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prescriptions -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-info">💊 Prescribe Medicine</h5>
+          <p class="card-text">Write and manage patient prescriptions.</p>
+         <a routerLink="/doctor/prescribe" class="btn btn-outline-primary btn-sm">Go to Prescriptions</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

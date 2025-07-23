@@ -1,0 +1,48 @@
+<!-- src/app/pages/signin/otp-verification/otp-verification.component.html -->
+<div class="container mt-5" style="max-width: 500px;">
+  <div class="card shadow">
+    <div class="card-body">
+      <h2 class="text-center text-primary mb-4">✉️ Verify Your Email</h2>
+
+      <!-- Message Display Area -->
+      <div *ngIf="message" class="alert mb-3"
+           [ngClass]="{'alert-success': message.includes('successfully'), 'alert-danger': !message.includes('successfully')}">
+        {{ message }}
+      </div>
+
+      <p *ngIf="email" class="text-center text-muted mb-4">
+        An OTP has been sent to: <strong class="text-primary">{{ email }}</strong>.
+        Please check your Mailtrap inbox (if in sandbox mode) or your actual email.
+      </p>
+      <p *ngIf="!email" class="text-center text-danger mb-4">
+        Email not provided. Please go back to the sign-in page.
+      </p>
+
+      <form (ngSubmit)="verifyOtp()" #otpVerifyForm="ngForm">
+        <div class="mb-3">
+          <label for="otp" class="form-label">🔑 Enter OTP</label>
+          <input
+            type="text"
+            id="otp"
+            class="form-control"
+            name="otp"
+            [(ngModel)]="otp"
+            required
+            pattern="[0-9]{6}"
+            maxlength="6"
+            placeholder="e.g., 123456" />
+          <div *ngIf="otpVerifyForm.controls['otp']?.errors?.['pattern'] && otpVerifyForm.controls['otp']?.touched" class="text-danger mt-1">
+            OTP must be 6 digits.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 mb-2" [disabled]="otpVerifyForm.invalid || !email">
+          Verify OTP
+        </button>
+        <button type="button" (click)="goBackToSignIn()" class="btn btn-secondary w-100">
+          Go Back / Resend OTP
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

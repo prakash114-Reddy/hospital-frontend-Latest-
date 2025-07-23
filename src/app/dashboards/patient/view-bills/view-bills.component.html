@@ -1,0 +1,32 @@
+<div class="container mt-5 p-4 shadow rounded bg-light">
+  <h4 class="text-center text-primary mb-4">💳 My Bill History</h4>
+
+  <table class="table table-bordered table-striped table-hover text-center" *ngIf="bills.length > 0; else noBills">
+    <thead class="table-dark">
+      <tr>
+        <th>Bill ID</th>
+        <th>Appointment ID</th>
+        <th>Test Charges</th>
+        <th>Medicine Charges</th>
+        <th>Total Amount</th>
+        <th>Billing Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bill of bills">
+        <td>{{ bill.billId }}</td>
+        <td>{{ bill.appointment.appointmentId }}</td>
+        <td>₹{{ bill.testCharge }}</td>
+        <td>₹{{ bill.medicineCharge }}</td>
+        <td><strong>₹{{ bill.totalAmount }}</strong></td>
+        <td>{{ bill.billingDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noBills>
+    <div class="alert alert-warning text-center">
+      🚫 No bills found for your account.
+    </div>
+  </ng-template>
+</div>

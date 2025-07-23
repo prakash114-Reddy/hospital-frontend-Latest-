@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h3 class="text-primary">📩 All Contact Messages</h3>
+  <table class="table table-bordered mt-3">
+    <thead class="table-light">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>Submitted At</th> <!-- ✅ New column -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let msg of messages; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ msg.name }}</td>
+        <td>{{ msg.email }}</td>
+        <td>{{ msg.message }}</td>
+        <td>{{ msg.submittedAt | date: 'medium' }}</td> <!-- ✅ Format date -->
+      </tr>
+    </tbody>
+  </table>
+</div>

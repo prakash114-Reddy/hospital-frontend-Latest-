@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h3 class="text-center text-success">🧑‍⚕️ All Patients</h3>
+
+  <div *ngIf="loading" class="text-center mt-3">
+    <div class="spinner-border text-success" role="status"></div>
+    <p>Loading patients...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <table *ngIf="patients.length > 0" class="table table-bordered table-striped mt-4">
+    <thead class="table-dark">
+      <tr>  
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients">
+        <td>{{ patient.patientId }}</td>
+        <td>{{ patient.fullName }}</td>
+        <td>{{ patient.age }}</td>
+        <td>{{ patient.gender }}</td>
+        <td>{{ patient.phone }}</td>
+        <td>
+          <!-- Navigate to standalone edit-patient page -->
+          <button class="btn btn-sm btn-warning me-2" [routerLink]="['/admin/edit-patient', patient.patientId]">Edit</button>
+
+          <!-- Delete patient -->
+          <button class="btn btn-sm btn-danger" (click)="onDeletePatient(patient.patientId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

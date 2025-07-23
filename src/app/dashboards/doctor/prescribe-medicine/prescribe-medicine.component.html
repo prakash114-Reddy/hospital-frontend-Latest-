@@ -1,0 +1,36 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <h3 class="text-primary text-center mb-3">💊 Prescribe Medicine</h3>
+
+  <form (ngSubmit)="onSubmit()">
+    <!-- Patient Dropdown -->
+    <div class="mb-3">
+      <label class="form-label">👤 Select Patient</label>
+      <select class="form-control" [(ngModel)]="prescription.patientId" name="patientId" required>
+        <option *ngFor="let patient of patients" [value]="patient.patientId">
+          {{ patient.fullName }} (ID: {{ patient.patientId }})
+        </option>
+      </select>
+    </div>
+
+    <!-- Diagnosis -->
+    <div class="mb-3">
+      <label class="form-label">🩺 Diagnosis</label>
+      <input type="text" class="form-control" [(ngModel)]="prescription.diagnosis" name="diagnosis" required />
+    </div>
+
+    <!-- Multi-select Medicines -->
+    <mat-form-field appearance="fill" class="w-100 mb-3">
+      <mat-label>💊 Select Medicines</mat-label>
+      <mat-select multiple [(ngModel)]="prescription.medicines" name="medicines" required>
+        <mat-option *ngFor="let med of medicines" [value]="med.name">
+          {{ med.name }} ({{ med.type }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-success w-100" [disabled]="!prescription.patientId || !prescription.diagnosis || prescription.medicines.length === 0">
+      Submit Prescription
+    </button>
+  </form>
+</div>

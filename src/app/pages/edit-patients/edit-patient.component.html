@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <h3 class="text-primary">✏️ Edit Patient</h3>
+
+  <!-- 🟢 Form reference and submit handler -->
+  <form #editForm="ngForm" (ngSubmit)="updatePatient()" novalidate>
+    <div class="card p-4">
+      <div class="row">
+
+        <!-- Full Name -->
+        <div class="col-md-6 mb-3">
+          <label>Full Name:</label>
+          <input type="text" [(ngModel)]="patient.fullName" name="fullName" class="form-control" required #fullName="ngModel" />
+          <div class="text-danger mt-1" *ngIf="fullName.invalid && fullName.touched">
+            Full name is required.
+          </div>
+        </div>
+
+        <!-- Age -->
+        <div class="col-md-3 mb-3">
+          <label>Age:</label>
+          <input type="number" [(ngModel)]="patient.age" name="age" class="form-control" required min="1" #age="ngModel" />
+          <div class="text-danger mt-1" *ngIf="age.invalid && age.touched">
+            <div *ngIf="age.errors?.['required']">Age is required.</div>
+            <div *ngIf="age.errors?.['min']">Age must be at least 1.</div>
+          </div>
+        </div>
+
+        <!-- Gender -->
+        <div class="col-md-3 mb-3">
+          <label>Gender:</label>
+          <select [(ngModel)]="patient.gender" name="gender" class="form-control" required #gender="ngModel">
+            <option value="" disabled>Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+          <div class="text-danger mt-1" *ngIf="gender.invalid && gender.touched">
+            Gender is required.
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="col-md-6 mb-3">
+          <label>Phone:</label>
+          <input type="tel" [(ngModel)]="patient.phone" name="phone" pattern="^[0-9]{10}$" class="form-control" required #phone="ngModel" />
+          <div class="text-danger mt-1" *ngIf="phone.invalid && phone.touched">
+            <div *ngIf="phone.errors?.['required']">Phone number is required.</div>
+            <div *ngIf="phone.errors?.['pattern']">Phone must be 10 digits.</div>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="col-md-6 mb-3">
+          <label>Address:</label>
+          <input type="text" [(ngModel)]="patient.address" name="address" class="form-control" required #address="ngModel" />
+          <div class="text-danger mt-1" *ngIf="address.invalid && address.touched">
+            Address is required.
+          </div>
+        </div>
+      </div>
+
+      <!-- 🔒 Disable if invalid -->
+      <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">
+        💾 Update
+      </button>
+    </div>
+  </form>
+</div>

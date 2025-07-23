@@ -1,0 +1,96 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <h3 class="text-primary text-center">📅 Book Appointment</h3>
+
+  <form (ngSubmit)="bookAppointment()" #form="ngForm" novalidate>
+
+    <!-- Doctor Dropdown -->
+    <div class="mb-3">
+      <label>Select Doctor</label>
+      <select class="form-control"
+              [(ngModel)]="appointment.doctorId"
+              name="doctorId"
+              required
+              #doc="ngModel">
+        <option value="" disabled selected>Select Doctor</option>
+        <option *ngFor="let doc of doctorList" [value]="doc.doctorId">
+          {{ doc.doctorName }} ({{ doc.specialization }})
+        </option>
+      </select>
+      <div class="text-danger mt-1" *ngIf="doc.invalid && doc.touched">
+        Please select a doctor.
+      </div>
+    </div>
+
+    <!-- Date -->
+    <div class="mb-3">
+      <label>Date</label>
+      <input type="date"
+            class="form-control"
+            [(ngModel)]="appointment.appointmentDate"
+            name="appointmentDate"
+            required
+            [min]="today"
+            (change)="onDateChange()"
+            #date="ngModel">
+      <div class="text-danger mt-1" *ngIf="date.invalid && date.touched">
+        Appointment date is required and must not be in the past.
+      </div>
+    </div>
+
+    <!-- Time -->
+    <div class="mb-3">
+      <label>Time</label>
+      <input type="time"
+            class="form-control"
+            [(ngModel)]="appointment.appointmentTime"
+            name="appointmentTime"
+            required
+            [min]="minTime"
+            [max]="maxTime"
+            (input)="onTimeChange()"
+            (blur)="onTimeChange()"
+            #time="ngModel">
+      <div class="text-danger mt-1" *ngIf="(timeTouched || time.touched) && timeInvalid">
+        Appointment time must be between {{ minTime }} and {{ maxTime }}.
+      </div>
+    </div>
+
+    <!-- Reason -->
+    <div class="mb-3">
+      <label>Reason</label>
+      <textarea class="form-control"
+                [(ngModel)]="appointment.reason"
+                name="reason"
+                rows="2"
+                required
+                #reason="ngModel"></textarea>
+      <div class="text-danger mt-1" *ngIf="reason.invalid && reason.touched">
+        Reason for appointment is required.
+      </div>
+    </div>
+
+    <!-- Payment Method -->
+    <div class="mb-3">
+      <label>Select Payment Method</label>
+      <select class="form-control"
+              [(ngModel)]="appointment.paymentMethod"
+              name="paymentMethod"
+              required
+              #pay="ngModel">
+        <option value="" disabled selected>Select Method</option>
+        <option value="CARD">Pay via Card</option>
+        <option value="UPI">Pay via UPI</option>
+        <option value="PAY_LATER">Pay Later</option>
+      </select>
+      <div class="text-danger mt-1" *ngIf="pay.invalid && pay.touched">
+        Please select a payment method.
+      </div>
+    </div>
+
+    <button class="btn btn-primary w-100"
+            type="submit"
+            [disabled]="form.invalid || timeInvalid">
+      Book Now
+    </button>
+  </form>
+</div>

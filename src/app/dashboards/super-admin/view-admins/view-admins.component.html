@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h3 class="text-center text-primary">🧑‍💼 All Admins</h3>
+
+  <div *ngIf="loading" class="text-center mt-3">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p>Loading admins...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <table *ngIf="admins.length > 0" class="table table-bordered table-striped mt-4">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let admin of admins">
+        <td>{{ admin?.adminId }}</td>
+        <td>{{ admin?.username }}</td>
+        <td>{{ admin?.email }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="onDeleteAdmin(admin.adminId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

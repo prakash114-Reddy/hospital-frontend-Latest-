@@ -1,0 +1,68 @@
+<app-header [role]="'Admin Dashboard'"></app-header>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- Doctors -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success">👨‍⚕️ Manage Doctors</h5>
+          <p class="card-text">Add, update, or remove doctors from the system.</p>
+         <a routerLink="/admin/view-doctors"class="btn btn-primary btn-sm me-2">👁️ View All Doctors</a>
+
+          <a routerLink="/admin/add-doctor" class="btn btn-outline-success btn-sm">Add Doctor</a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Patients -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-warning">🧑‍🤝‍🧑 Manage Patients</h5>
+          <p class="card-text">View patient records and manage appointments.</p>
+          <a routerLink="/admin/view-patients" class="btn btn-primary btn-sm me-2">View Patients</a>
+          <a routerLink="/admin/add-patient" class="btn btn-outline-warning btn-sm">Add Patient</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Messages -->
+<div class="col-md-4 mb-4">
+  <div class="card shadow-sm border-0 h-100">
+    <div class="card-body">
+      <h5 class="card-title text-danger">📩 Contact Messages</h5>
+      <p class="card-text">View all messages submitted by users.</p>
+      <a routerLink="/admin/view-messages" class="btn btn-danger btn-sm">View Messages</a>
+    </div>
+  </div>
+</div>
+<!-- Upload Medicine Data -->
+<div class="col-md-4 mb-4">
+  <div class="card shadow-sm border-0 h-100">
+    <div class="card-body">
+      <h5 class="card-title text-primary">💊 Upload Medicine</h5>
+      <p class="card-text">Upload a CSV file containing medicine details to insert into the system.</p>
+      <a routerLink="/admin/upload-medicines" class="btn btn-outline-primary btn-sm">Upload</a>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Receptionists -->
+   <!--  <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-info">👩‍💼 Manage Receptionists</h5>
+          <p class="card-text">Add or manage reception staff for scheduling support.</p>
+          <a routerLink="/admin/view-receptionists" class="btn btn-primary btn-sm me-2">View Receptionists</a>
+          <a routerLink="/admin/add-receptionist" class="btn btn-outline-info btn-sm">Add Receptionist</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+

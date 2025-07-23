@@ -1,0 +1,30 @@
+<!-- src/app/pages/signin/signin.component.html -->
+<div class="container mt-5" style="max-width: 500px;">
+  <div class="card shadow">
+    <div class="card-body">
+      <h2 class="text-center text-primary mb-4">🔐 Sign In with OTP</h2>
+
+      <!-- Message Display Area -->
+      <div *ngIf="message" class="alert mb-3"
+           [ngClass]="{'alert-success': message.includes('successfully'), 'alert-danger': !message.includes('successfully')}">
+        {{ message }}
+      </div>
+
+      <form (ngSubmit)="sendOtp()" #emailForm="ngForm">
+        <div class="mb-3">
+          <label for="email" class="form-label">📧 Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="email"
+            required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="emailForm.invalid">
+          Send OTP
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

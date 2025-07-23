@@ -1,0 +1,74 @@
+/* ✅ Global font and body styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #fff);
+  color: #333;
+}
+
+/* ✅ Navbar styling */
+.navbar {
+  background: linear-gradient(to right, #007bff, #00bcd4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Hero section */
+.container.text-center.py-5 {
+  background-color: #fdfdfd;
+  border-radius: 20px;
+  padding: 60px 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+/* ✅ Buttons */
+.btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Cards */
+.card {
+  transition: transform 0.3s ease;
+  border-radius: 15px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* ✅ Contact form / About section */
+.bg-light {
+  background: #f0f8ff !important;
+}
+
+form .form-control {
+  border-radius: 12px;
+  box-shadow: none;
+  border: 1px solid #ced4da;
+}
+
+form .btn {
+  font-weight: bold;
+}
+
+/* ✅ Footer */
+footer {
+  background: #343a40;
+  color: #ddd;
+}
+
+footer a {
+  color: #90caf9;
+}
+
+/* 🎨 Page spacing and headings */
+.container {
+  padding-top: 4rem;
+}
+
+h1, h2 {
+  font-weight: bold;
+}

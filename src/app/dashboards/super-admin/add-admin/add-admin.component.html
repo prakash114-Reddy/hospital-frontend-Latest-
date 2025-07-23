@@ -1,0 +1,29 @@
+<!-- src/app/dashboards/super-admin/add-admin/add-admin.component.html -->
+<div class="container mt-5">
+  <h3 class="mb-4">➕ Add New Admin</h3>
+
+  <!-- Message Display Area -->
+  <div *ngIf="message" class="alert mb-3"
+       [ngClass]="{'alert-success': message.includes('successfully'), 'alert-danger': !message.includes('successfully')}">
+    {{ message }}
+  </div>
+
+  <form (ngSubmit)="addAdmin()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username:</label>
+      <input type="text" id="username" [(ngModel)]="adminUser.username" name="username" required class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" id="email" [(ngModel)]="adminUser.email" name="email" required class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password:</label>
+      <input type="password" id="password" [(ngModel)]="adminUser.password" name="password" required class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-success">Add Admin</button>
+  </form>
+</div>

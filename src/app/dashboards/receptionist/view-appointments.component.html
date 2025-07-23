@@ -1,0 +1,55 @@
+<div class="container mt-5 p-4 shadow-lg rounded bg-white">
+  <h3 class="text-center text-primary mb-4">📋 All Appointments</h3>
+
+  <!-- 🔍 Search -->
+  <div class="mb-3">
+    <input type="text" [(ngModel)]="searchText" placeholder="🔍 Search patient or doctor" class="form-control shadow-sm" />
+  </div>
+
+  <!-- 📋 Appointments Table -->
+  <div *ngIf="filteredAppointments().length === 0" class="alert alert-warning text-center fs-5">
+    🚫 No matching appointments found.
+  </div>
+
+  <div *ngIf="filteredAppointments().length > 0" class="table-responsive">
+    <table class="table table-bordered table-hover text-center align-middle shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>#ID</th>
+          <th>🧑 Patient</th>
+          <th>👨‍⚕️ Doctor</th>
+          <th>📅 Date</th>
+          <th>⏰ Time</th>
+          <th>📍 Status</th>
+          <th>❌ Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let app of paginatedAppointments()">
+          <td>{{ app.appointmentId }}</td>
+          <td>{{ app.patientName }}</td>
+          <td>{{ app.doctorName }}</td>
+          <td>{{ app.appointmentDate }}</td>
+          <td>{{ app.appointmentTime }}</td>
+          <td>
+            <span class="badge fs-6" [ngClass]="{ 'bg-success': !app.cancelled, 'bg-danger': app.cancelled }">
+              {{ app.cancelled ? '❌ Cancelled' : '✅ Confirmed' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="cancelAppointment(app.appointmentId)" [disabled]="app.cancelled">
+              Cancel
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 📄 Pagination Controls -->
+  <div class="d-flex justify-content-between mt-3">
+    <button class="btn btn-outline-primary" (click)="previousPage()" [disabled]="currentPage === 1">⬅️ Previous</button>
+    <span class="align-self-center">Page {{ currentPage }} of {{ totalPages() }}</span>
+    <button class="btn btn-outline-primary" (click)="nextPage()" [disabled]="currentPage === totalPages()">Next ➡️</button>
+  </div>
+</div>

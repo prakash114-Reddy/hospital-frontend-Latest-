@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <h3 class="text-success">✏️ Edit Doctor</h3>
+  <div class="card p-4">
+    <!-- ✅ Add ngForm reference -->
+    <form #editDoctorForm="ngForm" (ngSubmit)="updateDoctor()" novalidate>
+
+      <div class="row">
+        <!-- Doctor Name -->
+        <div class="col-md-6 mb-3">
+          <label>Doctor Name:</label>
+          <input type="text" [(ngModel)]="doctor.doctorName" name="doctorName"
+                 class="form-control" required />
+        </div>
+
+        <!-- Experience with min validation -->
+        <div class="col-md-3 mb-3">
+          <label>Experience:</label>
+          <input type="number" [(ngModel)]="doctor.experience" name="experience"
+                 class="form-control" required min="1" #exp="ngModel" />
+          <!-- 🔴 Show validation message -->
+          <div class="text-danger mt-1" *ngIf="exp.invalid && exp.touched">
+            <div *ngIf="exp.errors?.['required']">Experience is required.</div>
+            <div *ngIf="exp.errors?.['min']">Experience must be at least 1.</div>
+          </div>
+        </div>
+
+        <!-- Specialization -->
+        <div class="col-md-3 mb-3">
+          <label>Specialization:</label>
+          <input type="text" [(ngModel)]="doctor.specialization" name="specialization"
+                 class="form-control" required />
+        </div>
+      </div>
+
+      <!-- ✅ Disable if form invalid -->
+      <button type="submit" class="btn btn-success" [disabled]="editDoctorForm.invalid">
+        💾 Update
+      </button>
+
+    </form>
+  </div>
+</div>

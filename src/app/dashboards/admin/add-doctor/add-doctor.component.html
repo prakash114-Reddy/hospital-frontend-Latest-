@@ -1,0 +1,48 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <h3 class="text-success text-center">➕ Add Doctor</h3>
+
+  <form #doctorForm="ngForm" (ngSubmit)="addDoctor()" novalidate>
+
+    <div class="mb-3">
+      <label>Doctor Name</label>
+      <input type="text" class="form-control" [(ngModel)]="doctor.doctorName" name="doctorName" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Specialization</label>
+      <input type="text" class="form-control" [(ngModel)]="doctor.specialization" name="specialization" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Experience (in years)</label>
+      <input type="number" class="form-control"
+             [(ngModel)]="doctor.experience"
+             name="experience"
+             required min="1" #exp="ngModel">
+      <div class="text-danger mt-1" *ngIf="exp.invalid && exp.touched">
+        <div *ngIf="exp.errors?.['required']">Experience is required.</div>
+        <div *ngIf="exp.errors?.['min']">Experience must be at least 1.</div>
+      </div>
+    </div>
+
+    <!-- ✅ Time Picker -->
+    <div class="mb-3">
+      <label>Available Time</label>
+      <input type="time" class="form-control" [(ngModel)]="doctor.timings" name="timings" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Username</label>
+      <input type="text" class="form-control" [(ngModel)]="doctor.user.username" name="username" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Password</label>
+      <input type="password" class="form-control" [(ngModel)]="doctor.user.password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100" [disabled]="doctorForm.invalid">
+      Add Doctor
+    </button>
+  </form>
+</div>

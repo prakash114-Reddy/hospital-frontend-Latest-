@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h3 class="text-center text-success">📋 Patient Medical Records</h3>
+
+  <div *ngIf="medicalRecords.length === 0" class="alert alert-info mt-4">
+    No records available.
+  </div>
+
+  <div *ngFor="let record of medicalRecords" class="card mb-3 shadow-sm">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <div>
+        <strong>Dr. {{ record.doctorName }}</strong> - {{ record.date }} at {{ record.time }}
+      </div>
+      <button class="btn btn-sm btn-danger" (click)="deleteRecord(record.recordId)">
+        🗑️ Delete 
+      </button>
+    </div>
+
+    <div class="card-body">
+      <p><strong>Symptoms:</strong> {{ record.symptoms }}</p>
+      <p><strong>Diagnosis:</strong> {{ record.diagnosis }}</p>
+      <p><strong>Notes:</strong> {{ record.notes }}</p>
+
+      <div *ngIf="record.prescriptions?.length > 0">
+        <h6>🧾 Prescriptions:</h6>
+        <ul class="list-group mb-2">
+          <li *ngFor="let p of record.prescriptions" class="list-group-item">
+            {{ p.medicineName }} - {{ p.dosage }} - {{ p.duration }}
+            <small class="text-muted float-end">Prescribed on: {{ p.prescribedDate }}</small>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="record.bill">
+        <h6>💳 Bill Details:</h6>
+        <p>Test Charge: ₹{{ record.bill.testCharge }}</p>
+        <p>Medicine Charge: ₹{{ record.bill.medicineCharge }}</p>
+        <p><strong>Total: ₹{{ record.bill.totalAmount }}</strong></p>
+        <small class="text-muted">Billed on: {{ record.bill.billingDate }}</small>
+      </div>
+    </div>
+  </div>
+</div>

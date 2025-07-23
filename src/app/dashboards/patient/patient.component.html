@@ -1,0 +1,39 @@
+<!-- ✅ Reusable Header with Logout -->
+<app-header [role]="'Patient Dashboard'"></app-header>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- View Records -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success">📋 View Medical Records</h5>
+          <p class="card-text">See your prescriptions, diagnoses, and reports.</p>
+          <a routerLink="/patient/view-records" class="btn btn-primary btn-sm">View Records</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book Appointment -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-info">📅 Book Appointment</h5>
+          <p class="card-text">Choose a doctor and schedule your appointment.</p>
+          <a routerLink="/patient/book-appointment" class="btn btn-outline-primary btn-sm">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Bills -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">💳 View My Bills</h5>
+          <p class="card-text">Check your past medical bills and charges.</p>
+          <a routerLink="/patient/view-bills" class="btn btn-primary btn-sm">View Bills</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

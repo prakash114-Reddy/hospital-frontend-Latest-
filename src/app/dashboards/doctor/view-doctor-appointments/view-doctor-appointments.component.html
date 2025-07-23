@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h3 class="text-success text-center">📅 My Appointments</h3>
+
+  <table class="table table-bordered mt-3" *ngIf="appointments.length > 0; else noData">
+    <thead class="table-light">
+      <tr>
+        <th>Patient</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Reason</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appt of appointments">
+        <td>{{ appt.patientName || 'N/A' }}</td> <!-- ✅ Correct key -->
+        <td>{{ appt.appointmentDate }}</td>
+        <td>{{ appt.appointmentTime }}</td>
+        <td>{{ appt.reason || 'N/A' }}</td>
+        <td>
+          <span class="badge"
+                [ngClass]="{
+                  'bg-success': appt.status === 'BOOKED',
+                  'bg-danger': appt.status === 'CANCELLED'
+                }">
+            {{ appt.status || 'N/A' }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p class="text-center text-muted mt-4">No appointments found.</p>
+  </ng-template>
+</div>

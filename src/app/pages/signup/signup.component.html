@@ -1,0 +1,62 @@
+    <!-- src/app/pages/signup/signup.component.html -->
+    <div class="container mt-5" style="max-width: 500px;">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="text-center text-primary mb-4">📝 Sign Up</h2>
+
+          <!-- Message Display Area -->
+          <div *ngIf="message" class="alert mb-3"
+               [ngClass]="{'alert-success': message.includes('successful'), 'alert-danger': !message.includes('successful')}">
+            {{ message }}
+          </div>
+
+          <form (ngSubmit)="onSubmit()" #signupForm="ngForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">👤 Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                name="username"
+                [(ngModel)]="user.username"
+                required />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">📧 Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                name="email"
+                [(ngModel)]="user.email"
+                required />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">🔒 Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="user.password"
+                required />
+            </div>
+            <!-- You might want to add a role selection or keep it fixed for PATIENT -->
+            <!-- <div class="mb-3">
+              <label for="role" class="form-label">Role:</label>
+              <select id="role" class="form-control" name="role" [(ngModel)]="user.role" required>
+                <option value="PATIENT">Patient</option>
+                <option value="DOCTOR">Doctor</option>
+                <option value="RECEPTIONIST">Receptionist</option>
+                <option value="ADMIN">Admin</option>
+              </select>
+            </div> -->
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">
+              Sign Up
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    

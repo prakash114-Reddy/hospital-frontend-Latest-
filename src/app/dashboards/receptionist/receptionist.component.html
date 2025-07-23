@@ -1,0 +1,39 @@
+<!-- ✅ Reusable Header with Logout -->
+<app-header [role]="'Receptionist Dashboard'"></app-header>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- Schedule Appointment -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success">📆 Schedule Appointments</h5>
+          <p class="card-text">Book appointments for patients and assign doctors.</p>
+          <a routerLink="/receptionist/schedule" class="btn btn-success btn-sm">Schedule</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ Billing Feature -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">💰 Generate Bill</h5>
+          <p class="card-text">Create and manage bills for patient appointments.</p>
+          <a routerLink="/receptionist/generate-bill" class="btn btn-primary btn-sm">Generate Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Appointments -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-info">📋 View Appointments</h5>
+          <p class="card-text">See all scheduled appointments in a nice table.</p>
+          <a routerLink="/receptionist/view" class="btn btn-info btn-sm">View Appointments</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
