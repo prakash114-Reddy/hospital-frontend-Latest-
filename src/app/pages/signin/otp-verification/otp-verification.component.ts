@@ -28,6 +28,7 @@ export class OtpVerificationComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.email = params['email'] || '';
+      console.log('OTPVerificationComponent: ngOnInit - Initializing with email from query params:', this.email); // DEBUG
       if (!this.email) {
         this.message = 'Email not provided. Please go back to the sign-in page.';
       }
@@ -36,6 +37,7 @@ export class OtpVerificationComponent implements OnInit {
 
   verifyOtp(): void {
     this.message = '';
+    console.log('OTPVerificationComponent: verifyOtp called for email:', this.email, 'OTP:', this.otp); // DEBUG
     if (!this.otp) {
       this.message = 'Please enter the OTP.';
       return;
@@ -48,22 +50,28 @@ export class OtpVerificationComponent implements OnInit {
     // The backend's verifyOtp method MUST return a 'token' property for this to work.
     this.authService.verifyOtp(this.email, this.otp).subscribe({
       next: (response: { message: string, role: string, token?: string }) => {
+        console.log('OTPVerificationComponent: Received response from verifyOtp:', response); // AGGRESSIVE DEBUG: Inspect full response
         this.message = response.message;
         const role = response.role;
         const token = response.token; // Get the token from the response
+
+        console.log('OTPVerificationComponent: Extracted Role:', role, 'Extracted Token (presence):', !!token); // DEBUG
 
         if (token) {
           // ✅ Use AuthStateService to set the login state.
           // This ensures AuthStateService's internal state is updated.
           this.authStateService.setLoginState(this.email, role, token);
+          console.log('OTPVerificationComponent: AuthStateService.setLoginState called successfully.'); // DEBUG
         } else {
           // If backend doesn't provide a token, it's a critical issue for protected routes.
-          console.error('Backend did NOT provide a JWT token in verifyOtp response. Login will fail for protected routes.');
+          console.error('OTPVerificationComponent: CRITICAL - Backend did NOT provide a JWT token in verifyOtp response, even though expected.'); // DEBUG
           this.message = 'Login successful, but security token missing. Please try again or contact support.';
+          // You might want to prevent redirection here if a token is absolutely mandatory
           return;
         }
 
         // Redirect to the appropriate dashboard based on the role
+        console.log('OTPVerificationComponent: Redirecting to dashboard based on role:', role); // DEBUG
         switch (role) {
           case 'ADMIN':
             this.router.navigate(['/admin']);
@@ -87,13 +95,14 @@ export class OtpVerificationComponent implements OnInit {
         }
       },
       error: (error: any) => {
-        console.error('Error verifying OTP:', error);
+        console.error('OTPVerificationComponent: Error verifying OTP:', error); // DEBUG
         this.message = `OTP verification failed: ${error.error?.message || error.message}`;
       }
     });
   }
 
   goBackToSignIn(): void {
+    console.log('OTPVerificationComponent: Navigating back to signin.'); // DEBUG
     this.router.navigate(['/signin']);
   }
 }
