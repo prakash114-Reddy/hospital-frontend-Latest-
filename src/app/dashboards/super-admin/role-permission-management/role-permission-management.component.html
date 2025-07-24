@@ -1,0 +1,42 @@
+<app-header [role]="loggedInUserRole"></app-header>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Manage Roles & Permissions</h2>
+  <p class="text-center text-muted">Assign or remove permissions for each role.</p>
+
+  <!-- Select Role -->
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <label for="roleSelect" class="form-label fw-bold">Select Role:</label>
+      <select class="form-select" id="roleSelect" [(ngModel)]="selectedRole" (change)="onRoleChange()">
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Permissions List -->
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title text-primary">Permissions for {{ selectedRole }}</h5>
+          <div *ngIf="permissions && permissions.length > 0">
+            <div class="form-check mb-2" *ngFor="let permission of permissions">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [checked]="isPermissionSelected(permission.id)"
+                (change)="togglePermission(permission.id, $event)"
+              />
+              <label class="form-check-label">{{ permission.name }}</label>
+            </div>
+            <button class="btn btn-primary btn-sm mt-3" (click)="savePermissions()">💾 Save Changes</button>
+          </div>
+          <div *ngIf="!permissions || permissions.length === 0" class="text-muted">
+            No permissions available.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

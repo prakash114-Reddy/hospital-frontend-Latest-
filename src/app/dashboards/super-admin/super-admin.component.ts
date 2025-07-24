@@ -26,12 +26,12 @@ export class SuperadminComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('SuperadminComponent: ngOnInit called.');
-    if (this.authStateService.getLoginStatus()) { // ✅ Use the new synchronous method
+    if (this.authStateService.getLoginStatus()) {
       this.loggedInUserEmail = this.authStateService.getUserEmail() || '';
       this.loggedInUserRole = this.authStateService.getUserRole() || '';
       console.log('SuperadminComponent: Logged in user:', this.loggedInUserEmail, 'Role:', this.loggedInUserRole);
     } else {
-      console.warn('SuperadminComponent: AuthStateService says not logged in. Redirecting to signin.');
+      console.warn('SuperadminComponent: Not logged in. Redirecting to signin.');
       this.router.navigate(['/signin']);
     }
   }
@@ -39,21 +39,14 @@ export class SuperadminComponent implements OnInit {
   logout(): void {
     console.log('SuperadminComponent: Logout initiated.');
     this.authStateService.clearLoginState();
-    console.log('SuperadminComponent: AuthStateService.clearLoginState called.');
-
     this.router.navigate(['/signin']).then(() => {
-      console.log('SuperadminComponent: Navigated to signin, forcing page reload.');
       window.location.reload();
     });
   }
 
-  goToAddAdmin(): void {
-    console.log('SuperadminComponent: Navigating to add-admin.');
-    this.router.navigate(['/add-admin']);
-  }
-
-  goToViewAdmins(): void {
-    console.log('SuperadminComponent: Navigating to view-admins.');
-    this.router.navigate(['/superadmin/view-admins']);
+  // Navigate to Manage Roles & Permissions
+  goToManageRoles(): void {
+    console.log('SuperadminComponent: Navigating to manage-roles.');
+    this.router.navigate(['/superadmin/manage-roles']);
   }
 }

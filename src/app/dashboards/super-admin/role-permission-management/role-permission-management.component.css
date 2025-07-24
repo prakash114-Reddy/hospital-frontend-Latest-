@@ -1,0 +1,42 @@
+/* Title and subtitle */
+h2.text-center {
+  color: #0d6efd; /* Bootstrap primary color */
+  font-weight: bold;
+}
+
+p.text-muted {
+  color: #495057 !important; /* Darker gray */
+  font-size: 1rem;
+}
+
+/* Label for "Select Role:" */
+label.form-label {
+  color: #212529;
+  font-weight: 600;
+}
+
+/* Card styling */
+.card {
+  background-color: #f8f9fa; /* Light gray */
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* Checkbox styling */
+.form-check-input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.form-check-label {
+  margin-left: 8px;
+  color: #212529;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #0d6efd; /* Blue */
+  border-color: #0d6efd;
+}

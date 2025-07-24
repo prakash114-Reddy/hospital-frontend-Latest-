@@ -6,83 +6,15 @@
   <p class="text-center text-muted">Welcome, {{ loggedInUserEmail }} ({{ loggedInUserRole }})!</p>
 
   <div class="row">
-    <!-- Admin Management -->
+    <!-- Manage Roles & Permissions -->
     <div class="col-md-4 mb-4">
       <div class="card shadow-sm border-0 h-100">
         <div class="card-body">
-          <h5 class="card-title text-primary">👑 Manage Admins</h5>
-          <p class="card-text">View all admin users and assign roles or manage accounts.</p>
-          <!-- Use routerLink for navigation -->
-          <a routerLink="/superadmin/view-admins" class="btn btn-primary btn-sm me-2">👁️ View Admins</a>
-          <button class="btn btn-outline-primary btn-sm" (click)="goToAddAdmin()">➕ Add Admin</button>
+          <h5 class="card-title text-primary">🔐 Manage Roles & Permissions</h5>
+          <p class="card-text">Define what each role (Admin, Doctor, Receptionist, etc.) can do.</p>
+          <button class="btn btn-primary btn-sm" (click)="goToManageRoles()">⚙️ Manage</button>
         </div>
       </div>
     </div>
-
-    <!-- Example: Doctors Management (Add similar blocks for other roles) -->
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-body">
-          <h5 class="card-title text-success">👨‍⚕️ Manage Doctors</h5>
-          <p class="card-text">View and manage doctor accounts, specializations, and schedules.</p>
-         <button class="btn btn-primary mt-2" [routerLink]="['/superadmin/view-admins']">
-  👀 View All Admins
-</button>
-
-          <!-- Assuming you'll have an Add Doctor route -->
-          <!-- <button class="btn btn-outline-success btn-sm" (click)="goToAddDoctor()">➕ Add Doctor</button> -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Example: Patients Management -->
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-body">
-          <h5 class="card-title text-info">🧑‍🤝‍🧑 Manage Patients</h5>
-          <p class="card-text">View and manage patient records and details.</p>
-          <a routerLink="/superadmin/view-patients" class="btn btn-info btn-sm me-2">👁️ View Patients</a>
-          <!-- <button class="btn btn-outline-info btn-sm" (click)="goToAddPatient()">➕ Add Patient</button> -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Example: Receptionists Management -->
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-body">
-          <h5 class="card-title text-warning">👩‍💼 Manage Receptionists</h5>
-          <p class="card-text">View and manage receptionist accounts.</p>
-          <a routerLink="/superadmin/view-receptionists" class="btn btn-warning btn-sm me-2">👁️ View Receptionists</a>
-          <!-- <button class="btn btn-outline-warning btn-sm" (click)="goToAddReceptionist()">➕ Add Receptionist</button> -->
-        </div>
-      </div>
-    </div>
-
-    <!-- System Settings / Audit Logs (Future Features) -->
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-body">
-          <h5 class="card-title text-secondary">⚙️ System Settings</h5>
-          <p class="card-text">Configure global application settings and security policies.</p>
-          <button class="btn btn-secondary btn-sm" disabled>🔧 Configure Settings</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-body">
-          <h5 class="card-title text-danger">📊 Audit Logs</h5>
-          <p class="card-text">Review system activity and security audit trails.</p>
-          <button class="btn btn-danger btn-sm" disabled>📋 View Logs</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="text-center mt-5">
-    <button (click)="logout()" class="btn btn-danger">Logout</button>
   </div>
 </div>
